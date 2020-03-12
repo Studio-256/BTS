@@ -43,7 +43,6 @@ def hamming_decode(message: list):
 
 
 if __name__ == '__main__':
-
     c1 = [int(i) for i in '''0	
 11	
 0	
@@ -87,7 +86,6 @@ if __name__ == '__main__':
 0			
     '''.replace('\n', '').replace('\t', '').replace(' ', '')]
 
-
     hamming_decode(c1)
     print()
     print()
@@ -98,6 +96,5 @@ if __name__ == '__main__':
     hamming_decode(c3)
     print()
     hamming_decode(list(reversed(c3)))
-
 
     # hamming_decode([1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0])

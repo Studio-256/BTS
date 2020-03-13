@@ -11,10 +11,10 @@ class tracker:
                 dx=dx-4096
             tracklog.write("Received %d \n" % (dx))
             if(abs(int(dx))<500):
-             if(abs(int(dx))<20):
+             if(abs(int(dx))<10):
                 c2s.moveStop()
              else:
-                speed=30
+                speed=50
                 if(int(dx)>0):
                     c2s.moveLeft(speed)
                 else:

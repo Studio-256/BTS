@@ -34,7 +34,7 @@ def hamming_decode(message: list):
     return count
 
 
-def converter(filein:BytesIO, fileout:BytesIO, filelog:BytesIO):
+def converter(filein: BytesIO, fileout: BytesIO, filelog: BytesIO):
     print("convert py")
 
     while True:
@@ -46,4 +46,4 @@ def converter(filein:BytesIO, fileout:BytesIO, filelog:BytesIO):
         b = [hamming_decode(i) for i in b]
         b = [int(''.join(map(str, i)), 2) for i in b]
         for i in s:
-            fileout.write(i)
+            fileout.write(b[0].to_bytes(1, 'big'))

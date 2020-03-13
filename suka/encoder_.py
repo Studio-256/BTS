@@ -30,4 +30,4 @@ def converter(filein: BytesIO, fileout: BytesIO):
         b = [b[0][:8], b[0][8:] + b[1][:4], b[1][4:]]
         b = [int(''.join(map(str, i)), 2) for i in b]
         for i in s:
-            fileout.write(i)
+            fileout.write(b[0].to_bytes(1, 'big'))

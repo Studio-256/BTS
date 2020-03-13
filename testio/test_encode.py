@@ -1,3 +1,6 @@
+from random import randint
+
+
 def hamming_encode(data: list):
     data = data.copy()
     x = 1
@@ -20,6 +23,9 @@ inp = open('input.dat', 'rb')
 a = [[int(i) for i in bin(int.from_bytes(inp.read(1), 'big'))[2:].rjust(8, '0')] for i in range(2)]
 b = [hamming_encode(i) for i in a]
 b = [b[0][:8], b[0][8:] + b[1][:4], b[1][4:]]
+for i in range(2):
+    x, y = randint(0, 2), randint(0, 7)
+    b[x][y] ^= 1
 b = [int(''.join(map(str, i)), 2) for i in b]
 signal = open('buf.dat', 'wb')
 for i in b:

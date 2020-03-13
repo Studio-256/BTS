@@ -20,7 +20,7 @@ def hamming_decode(message: list):
         if message[x - 1] != count[x - 1]:
             wrong.append(x)
         x //= 2
-    if len(wrong) > 1:
+    if len(wrong) > 1 and sum(wrong) < len(count):
         count[sum(wrong) - 1] ^= 1
     x = x0
     while x >= 1:

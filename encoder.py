@@ -31,6 +31,3 @@ def converter(filein: BytesIO, fileout: BytesIO):
         b = [int(''.join(map(str, i)), 2) for i in b]
         for i in b:
             fileout.write(i.to_bytes(1, 'big'))
-
-
-a = open('testio/input.dat', 'rw')

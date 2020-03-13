@@ -31,6 +31,7 @@ def hamming_decode(message: list):
 
 signal = open('buf.dat', 'rb')
 out = open('_input.dat', 'wb')
+out.write(bytes('sigizmund', encoding='utf8'))
 for i in range(7):
     a = [[int(i) for i in bin(int.from_bytes(signal.read(1), 'big'))[2:].rjust(8, '0')] for i in range(3)]
     b = [a[0] + a[1][:4], a[1][4:] + a[2]]

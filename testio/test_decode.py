@@ -1,23 +1,3 @@
-from math import log2
-
-
-def hamming_encode(data: list):
-    x = 1
-    while x <= len(data):
-        data.insert(x - 1, 0)
-        x *= 2
-    x = 1
-    while x <= len(data):
-        s = 0
-        for i in range(x - 1, len(data), x * 2):
-            for j in range(i, i + x):
-                if j < len(data):
-                    s += data[j]
-        data[x - 1] = s % 2
-        x *= 2
-    return data
-
-
 def hamming_decode(message: list):
     count = message.copy()
     x = 1
@@ -49,7 +29,13 @@ def hamming_decode(message: list):
 
     return count
 
+signal = open('buf.dat', 'rb')
+a = [[int(i) for i in bin(int.from_bytes(signal.read(1), 'big'))[2:].rjust(8, '0')] for i in range(3)]
+b = [a[0] + a[1][:4], a[1][4:] + a[2]]
+b = [hamming_decode(i) for i in b]
+b = [int(''.join(map(str, i)), 2) for i in b]
 
-if __name__ == '__main__':
-    print(hamming_encode([1, 0, 1, 1, 0]))
-    hamming_decode([1, 0, 1, 0, 0, 1, 1, 0, 0])
+out = open('_input.dat', 'wb')
+for i in b:
+    out.write(i.to_bytes(1, 'big'))
+signal.close()

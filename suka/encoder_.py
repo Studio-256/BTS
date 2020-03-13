@@ -22,12 +22,12 @@ def hamming_encode(data: list):
 
 def converter(filein: BytesIO, fileout: BytesIO):
     while True:
-        s = [filein.read(1) for i in range(3)]
-        if not s[0] or not s[1] or not s[2]:
+        s = [filein.read(1) for i in range(2)]
+        if not s[0]:
             break
         a = [[int(i) for i in bin(int.from_bytes(i, 'big'))[2:].rjust(8, '0')] for i in s]
         b = [hamming_encode(i) for i in a]
         b = [b[0][:8], b[0][8:] + b[1][:4], b[1][4:]]
         b = [int(''.join(map(str, i)), 2) for i in b]
-        for i in s:
-            fileout.write(b[0].to_bytes(1, 'big'))
+        for i in b:
+            fileout.write(i.to_bytes(1, 'big'))

@@ -30,12 +30,13 @@ def hamming_decode(message: list):
     return count
 
 signal = open('buf.dat', 'rb')
-a = [[int(i) for i in bin(int.from_bytes(signal.read(1), 'big'))[2:].rjust(8, '0')] for i in range(3)]
-b = [a[0] + a[1][:4], a[1][4:] + a[2]]
-b = [hamming_decode(i) for i in b]
-b = [int(''.join(map(str, i)), 2) for i in b]
-
 out = open('_input.dat', 'wb')
-for i in b:
-    out.write(i.to_bytes(1, 'big'))
+for i in range(7):
+    a = [[int(i) for i in bin(int.from_bytes(signal.read(1), 'big'))[2:].rjust(8, '0')] for i in range(3)]
+    b = [a[0] + a[1][:4], a[1][4:] + a[2]]
+    b = [hamming_decode(i) for i in b]
+    b = [int(''.join(map(str, i)), 2) for i in b]
+    for i in b:
+        out.write(i.to_bytes(1, 'big'))
 signal.close()
+out.close()

@@ -6,7 +6,16 @@ class tracker:
         while True:
             status=c2s.getStatus()
             dx=int(status)&0x0fff
-            x=int(status)&0x000f
+
+            if abs(int(dx)) > 500:      # этот блок заставляет радар залезть в левый угол и оттуда начать поиск спутника
+                sost = status & 0xf0000
+                while sost != :
+                    speed = 100
+                    c2s.moveLeft(speed)
+                while abs(int(dx)) > 20:
+                    speed = 50
+                    c2s.moveRight(speed)
+                c2s.moveStop()
 
             if(dx>2048):
                 dx=dx-4096

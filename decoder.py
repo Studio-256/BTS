@@ -71,4 +71,4 @@ def converter(filein: BytesIO, fileout: BytesIO, filelog: BytesIO):
                 fileout.write(i.to_bytes(1, 'big'))
 
 
-converter(open('sas/buf.dat', 'rb'), open('sas/input.dat', 'wb'), open('tracker.txt', 'rb'))
+converter(open('sas/buf.dat', 'rb'), open('sas/input.dat', 'wb'), open('track.txt', 'rb'))

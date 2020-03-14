@@ -41,7 +41,10 @@ def converter(filein: BytesIO, fileout: BytesIO, filelog: BytesIO):
         if not entry:
             break
         entry = int.from_bytes(entry, 'big')
-        times.append((entry // 256, entry % 256))
+        if len(times) > 0 and times[-1][1] != entry % 256:
+            times.append((entry // 256, entry % 256))
+        elif len(times) == 0:
+            times.append((0, entry % 256))
     cur_t = 0
     data = []
     while True:
@@ -68,4 +71,4 @@ def converter(filein: BytesIO, fileout: BytesIO, filelog: BytesIO):
                 fileout.write(i.to_bytes(1, 'big'))
 
 
-converter(open('sas/input.dat', 'rb'), open('sas/input.dat', 'rb'), open('sas/sas.txt', 'rb'))
+converter(open('sas/buf.dat', 'rb'), open('sas/input.dat', 'wb'), open('tracker.txt', 'rb'))
